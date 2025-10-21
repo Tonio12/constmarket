@@ -1,103 +1,166 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, Users, Star, Hammer, HardHat, Paintbrush, Wrench, Zap } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 py-16 max-w-6xl mx-auto">
+        <div className="md:w-1/2 text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Find Skilled Construction Workers & Artisans
+          </h1>
+          <p className="text-lg text-gray-600 mb-6">
+            Connect with trusted foremen, masons, carpenters, electricians, and more. Hire the best
+            talent for your next project.
+          </p>
+          <Button size="lg" className="text-lg" asChild>
+            <a href="/signup">Get Started</a>
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/hero.webp"
+            alt="Construction Hero"
+            width={480}
+            height={320}
+            className="rounded-xl shadow-lg object-cover"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-6">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <CheckCircle className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Post a Project</h3>
+              <p className="text-gray-600">
+                Describe your construction needs and post your project.
+              </p>
+            </div>
+            <div>
+              <Users className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Browse Talent</h3>
+              <p className="text-gray-600">
+                Search and filter skilled laborers and artisans by specialty.
+              </p>
+            </div>
+            <div>
+              <Star className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Hire & Rate</h3>
+              <p className="text-gray-600">Connect, hire, and rate your team with ease.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Specialties Grid */}
+      <section className="py-12 max-w-6xl mx-auto px-6">
+        <h2 className="text-2xl font-bold text-center mb-8">Featured Specialties</h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="flex flex-col items-center">
+            <Hammer size={36} className="text-blue-600" />
+            <span className="mt-2 font-medium">Masons</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <HardHat size={36} className="text-yellow-600" />
+            <span className="mt-2 font-medium">Foremen</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Wrench size={36} className="text-gray-700" />
+            <span className="mt-2 font-medium">Plumbers</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Zap size={36} className="text-green-600" />
+            <span className="mt-2 font-medium">Electricians</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Paintbrush size={36} className="text-pink-600" />
+            <span className="mt-2 font-medium">Painters</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-6">Why Choose Us?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <CheckCircle className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Verified Talent</h3>
+              <p className="text-gray-600">All workers are vetted and rated by real clients.</p>
+            </div>
+            <div>
+              <Users className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Easy Hiring</h3>
+              <p className="text-gray-600">Quickly find and hire the right people for your job.</p>
+            </div>
+            <div>
+              <Star className="mx-auto text-green-500" size={40} />
+              <h3 className="font-semibold mt-4">Transparent Ratings</h3>
+              <p className="text-gray-600">See honest reviews and ratings before you hire.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-12 max-w-4xl mx-auto px-6">
+        <h2 className="text-2xl font-bold text-center mb-8">What Our Users Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <div className="flex items-center mb-4">
+              <Image
+                src="/user1.jpg"
+                alt="User 1"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <p className="font-semibold">Ayo Contractor</p>
+                <p className="text-sm text-gray-500">Contractor</p>
+              </div>
+            </div>
+            <p className="text-gray-700">
+              “This platform made it so easy to find reliable workers for my project. Highly
+              recommended!”
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow">
+            <div className="flex items-center mb-4">
+              <Image
+                src="/user2.jpg"
+                alt="User 2"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <p className="font-semibold">Chinedu Foreman</p>
+                <p className="text-sm text-gray-500">Foreman</p>
+              </div>
+            </div>
+            <p className="text-gray-700">
+              “I found more jobs and got paid on time. The rating system is fair and transparent.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-12 bg-green-600 text-white text-center">
+        <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
+        <p className="mb-6 text-lg">Join now and connect with the best construction talent.</p>
+        <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100" asChild>
+          <a href="/signup">Sign Up</a>
+        </Button>
+      </section>
+    </main>
   );
 }
