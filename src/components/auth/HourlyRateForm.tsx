@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -30,7 +30,7 @@ export default function HourlyRateForm({
     }
   );
 
-  const [serviceFeeRate, setServiceFeeRate] = useState(0.1); // 10% service fee
+  const serviceFeeRate = 0.1; // 10% service fee
 
   // Calculate derived values
   const serviceFee = formData.rate * serviceFeeRate;

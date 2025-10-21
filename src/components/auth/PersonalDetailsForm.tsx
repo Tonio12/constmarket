@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -87,9 +88,11 @@ export default function PersonalDetailsForm({
           <div className="relative w-40 h-40 mx-auto mb-6">
             <div className="w-40 h-40 rounded-full bg-gradient-to-b from-primary to-blue-500 flex items-center justify-center relative overflow-hidden">
               {profileImage ? (
-                <img
+                <Image
                   src={profileImage}
                   alt="Profile"
+                  width={160}
+                  height={160}
                   className="w-full h-full object-cover rounded-full"
                 />
               ) : (

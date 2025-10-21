@@ -25,6 +25,42 @@ type SignupStep =
   | 'bio-overview'
   | 'trade-specialties';
 
+interface EducationData {
+  institution: string;
+  qualification: string;
+  specialization: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  certificate?: File;
+}
+
+interface WorkExperienceData {
+  projectTitle: string;
+  role: string;
+  specialties: string;
+  client: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+interface PersonalDetailsData {
+  dateOfBirth: string;
+  gender: string;
+  country: string;
+  city: string;
+  digitalAddress: string;
+  phoneNumber: string;
+  profilePicture?: File;
+}
+
+interface HourlyRateData {
+  rate: number;
+  currency: string;
+}
+
 interface SignupData {
   role: UserRole | null;
   skills: string[];
@@ -127,7 +163,7 @@ export default function MultiStepSignup() {
     setSignupData((prev) => ({ ...prev, skills }));
   };
 
-  const handleAddEducation = (education: any, index?: number) => {
+  const handleAddEducation = (education: EducationData, index?: number) => {
     setSignupData((prev) => {
       if (index !== undefined) {
         // Edit existing education
@@ -154,7 +190,7 @@ export default function MultiStepSignup() {
     setIsEducationModalOpen(true);
   };
 
-  const handleAddExperience = (experience: any, index?: number) => {
+  const handleAddExperience = (experience: WorkExperienceData, index?: number) => {
     setSignupData((prev) => {
       if (index !== undefined) {
         // Edit existing experience
@@ -181,14 +217,14 @@ export default function MultiStepSignup() {
     setIsExperienceModalOpen(true);
   };
 
-  const handlePersonalDetailsUpdate = (personalDetails: any) => {
+  const handlePersonalDetailsUpdate = (personalDetails: PersonalDetailsData) => {
     setSignupData((prev) => ({
       ...prev,
       personalDetails,
     }));
   };
 
-  const handleHourlyRateUpdate = (hourlyRate: any) => {
+  const handleHourlyRateUpdate = (hourlyRate: HourlyRateData) => {
     setSignupData((prev) => ({
       ...prev,
       hourlyRate,
@@ -215,9 +251,17 @@ export default function MultiStepSignup() {
           // For artisans, include all the collected data
           ...(signupData.role === 'artisan' && {
             professionalRole: signupData.professionalRole,
-            education: signupData.education,
+            education: signupData.education.map((edu) => ({
+              ...edu,
+              certificate: edu.certificate ? edu.certificate.name : undefined,
+            })),
             workExperience: signupData.workExperience,
-            personalDetails: signupData.personalDetails,
+            personalDetails: {
+              ...signupData.personalDetails,
+              profilePicture: signupData.personalDetails.profilePicture
+                ? signupData.personalDetails.profilePicture.name
+                : undefined,
+            },
             hourlyRate: signupData.hourlyRate,
             bio: signupData.bio,
             trade: signupData.trade,
@@ -349,7 +393,7 @@ export default function MultiStepSignup() {
             formData={signupData.formData}
             onFormDataChange={handleFormDataUpdate}
             isSubmitting={isSubmitting}
-            userType={signupData.role}
+            userType={signupData.role || 'contractor'}
           />
         );
       case 'professional-role':
@@ -363,8 +407,8 @@ export default function MultiStepSignup() {
                 Got it. Now, add a title to tell the world what you do.
               </h1>
               <p className="text-gray-600 mb-8">
-                It's the very first thing clients see, so make it count. Stand out by describing
-                your expertise in your own words.
+                It&apos;s the very first thing clients see, so make it count. Stand out by
+                describing your expertise in your own words.
               </p>
               <div className="max-w-lg mx-auto">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -405,7 +449,7 @@ export default function MultiStepSignup() {
                 Clients like to know what you know - add your education here.
               </h1>
               <p className="text-gray-600 mb-8">
-                You don't have to have a degree. Adding any relevant education helps make your
+                You don&apos;t have to have a degree. Adding any relevant education helps make your
                 profile more visible.{' '}
                 <span className="font-medium">You can skip this and add it later.</span>
               </p>
@@ -485,8 +529,8 @@ export default function MultiStepSignup() {
                 If you have relevant work experience, add it here.
               </h1>
               <p className="text-gray-600 mb-8">
-                Freelancers who add their experience are twice as likely to win work. But if you're
-                just starting out, you can still create a great profile.{' '}
+                Freelancers who add their experience are twice as likely to win work. But if
+                you&apos;re just starting out, you can still create a great profile.{' '}
                 <span className="font-medium">You can skip this and add it later.</span>
               </p>
               <div className="max-w-lg mx-auto">

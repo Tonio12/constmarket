@@ -65,6 +65,62 @@ export interface LoginData {
   password: string;
 }
 
+interface UserProfile {
+  firstName: string;
+  surname: string;
+  company?: string;
+  specialties?: string[];
+  skills?: string[];
+  experience?: number;
+  bio?: string;
+  professionalRole?: string;
+  education?: Array<{
+    institution: string;
+    qualification: string;
+    specialization: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+    certificate?: string;
+  }>;
+  workExperience?: Array<{
+    projectTitle: string;
+    role: string;
+    specialties: string;
+    client: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+    images?: string[];
+  }>;
+  personalDetails?: {
+    dateOfBirth: string;
+    gender: string;
+    country: string;
+    city: string;
+    digitalAddress: string;
+    phoneNumber: string;
+    profilePicture?: string;
+  };
+  hourlyRate?: {
+    rate: number;
+    currency: string;
+  };
+  trade?: string;
+}
+
+interface ContactInfo {
+  phone?: string;
+  email: string;
+  location?: string;
+}
+
+interface UserPreferences {
+  emailUpdates: boolean;
+  termsAccepted: boolean;
+}
+
 export interface AuthResponse {
   success: boolean;
   message: string;
@@ -73,9 +129,9 @@ export interface AuthResponse {
       id: number;
       email: string;
       userType: string;
-      profile: any;
-      contactInfo: any;
-      preferences: any;
+      profile: UserProfile;
+      contactInfo: ContactInfo;
+      preferences: UserPreferences;
       isVerified: boolean;
       isActive: boolean;
       createdAt: string;
@@ -205,7 +261,17 @@ export const authApi = {
     return localStorage.getItem('token');
   },
 
-  getUser(): any | null {
+  getUser(): {
+    id: number;
+    email: string;
+    userType: string;
+    profile: UserProfile;
+    contactInfo: ContactInfo;
+    preferences: UserPreferences;
+    isVerified: boolean;
+    isActive: boolean;
+    createdAt: string;
+  } | null {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   },
