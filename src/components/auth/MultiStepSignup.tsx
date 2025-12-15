@@ -10,105 +10,18 @@ import HourlyRateForm from './HourlyRateForm';
 import AddEducationForm from './AddEducationForm';
 import AddWorkExperienceForm from './AddWorkExperienceForm';
 import ProgressIndicator from '@/components/ui/ProgressIndicator';
-import { authApi, type SignupData as APISignupData } from '@/lib/api/auth';
+import { authApi } from '@/lib/api/auth';
+import type { SignupData as APISignupData } from '@/lib/types';
+import type {
+  UserRole,
+  SignupStep,
+  EducationData,
+  WorkExperienceData,
+  PersonalDetailsData,
+  HourlyRateData,
+  FormSignupData,
+} from '@/lib/types';
 import { toast } from 'sonner';
-
-type UserRole = 'contractor' | 'artisan';
-type SignupStep =
-  | 'role-selection'
-  | 'signup-form'
-  | 'professional-role'
-  | 'education-history'
-  | 'work-experience'
-  | 'personal-details'
-  | 'hourly-rate'
-  | 'bio-overview'
-  | 'trade-specialties';
-
-interface EducationData {
-  institution: string;
-  qualification: string;
-  specialization: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  certificate?: File;
-}
-
-interface WorkExperienceData {
-  projectTitle: string;
-  role: string;
-  specialties: string;
-  client: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-}
-
-interface PersonalDetailsData {
-  dateOfBirth: string;
-  gender: string;
-  country: string;
-  city: string;
-  digitalAddress: string;
-  phoneNumber: string;
-  profilePicture?: File;
-}
-
-interface HourlyRateData {
-  rate: number;
-  currency: string;
-}
-
-interface SignupData {
-  role: UserRole | null;
-  skills: string[];
-  formData: {
-    firstName: string;
-    surname: string;
-    email: string;
-    password: string;
-    emailUpdates: boolean;
-    termsAccepted: boolean;
-  };
-  professionalRole: string;
-  education: Array<{
-    institution: string;
-    qualification: string;
-    specialization: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-    certificate?: File;
-  }>;
-  workExperience: Array<{
-    projectTitle: string;
-    role: string;
-    specialties: string;
-    client: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-  }>;
-  personalDetails: {
-    dateOfBirth: string;
-    gender: string;
-    country: string;
-    city: string;
-    digitalAddress: string;
-    phoneNumber: string;
-    profilePicture?: File;
-  };
-  hourlyRate: {
-    rate: number;
-    currency: string;
-  };
-  bio: string;
-  trade: string;
-  specialties: string[];
-}
 
 export default function MultiStepSignup() {
   const router = useRouter();
@@ -120,7 +33,7 @@ export default function MultiStepSignup() {
   const [editingExperienceIndex, setEditingExperienceIndex] = useState<number | undefined>(
     undefined
   );
-  const [signupData, setSignupData] = useState<SignupData>({
+  const [signupData, setSignupData] = useState<FormSignupData>({
     role: null,
     skills: [],
     formData: {
@@ -155,7 +68,7 @@ export default function MultiStepSignup() {
     setSignupData((prev) => ({ ...prev, role }));
   };
 
-  const handleFormDataUpdate = (formData: SignupData['formData']) => {
+  const handleFormDataUpdate = (formData: FormSignupData['formData']) => {
     setSignupData((prev) => ({ ...prev, formData }));
   };
 
