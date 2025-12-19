@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Star, Hammer, HardHat, Paintbrush, Wrench, Zap, Search, Users } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { Search } from 'lucide-react';
+import LandingNav from '@/components/landing/LandingNav';
 import ArtisanExplorer from '@/components/landing/ArtisanExplorer';
 import type { ArtisanCard } from '@/lib/types/artisan';
 
@@ -30,6 +30,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white">
+      <LandingNav />
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/40 to-transparent" />
         <div className="relative px-6 py-16 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">

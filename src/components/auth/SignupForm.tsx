@@ -249,20 +249,29 @@ export default function SignupForm({
                   }
                   className="mt-1"
                 />
-                <Label htmlFor="termsAccepted" className="text-sm text-gray-600 leading-normal">
-                  Yes, I understand and agree to the{' '}
-                  <a href="#" className="text-primary hover:underline font-medium">
-                    Constket Terms of Service
-                  </a>
-                  , including the{' '}
-                  <a href="#" className="text-primary hover:underline font-medium">
-                    User Agreement
-                  </a>{' '}
-                  and{' '}
-                  <a href="#" className="text-primary hover:underline font-medium">
-                    Privacy Policy
-                  </a>
-                  .
+                <Label
+                  htmlFor="termsAccepted"
+                  className="text-sm text-gray-600 leading-normal block"
+                >
+                  <span>Yes, I understand and agree to the</span>{' '}
+                  <span className="whitespace-nowrap">
+                    <a href="#" className="text-primary hover:underline font-medium">
+                      Constket Terms of Service
+                    </a>
+                  </span>{' '}
+                  <span>including the</span>{' '}
+                  <span className="whitespace-nowrap">
+                    <a href="#" className="text-primary hover:underline font-medium">
+                      User Agreement
+                    </a>
+                  </span>{' '}
+                  <span>and</span>{' '}
+                  <span className="whitespace-nowrap">
+                    <a href="#" className="text-primary hover:underline font-medium">
+                      Privacy Policy
+                    </a>
+                  </span>
+                  <span>.</span>
                 </Label>
               </div>
             </div>
